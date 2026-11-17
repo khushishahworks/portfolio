@@ -1,12 +1,15 @@
 body{margin:0}
 .t6y{--bg:#FFFBEF;--ink:#211E16;--soft:#6A6250;--acc:#F6E3A1;--acct:#8A6100;--tint:#FBF1CC;--onacc:#4A4332;--line:rgba(33,30,22,0.15);--card:#FFFFFF;--side:clamp(24px,20vw,400px);--sun:var(--acc);--fill:var(--acc);--hl:var(--acc)}
 /* ---------- dark mode: the same brand at night ----------
-   ink and cream swap, butter and gold stay; the footer sun becomes a soft moon and the Services flood a warm brown */
+   ink and cream swap, butter and gold stay; the footer sun stays butter and the Services flood a warm brown */
 html{background:#FFFBEF}
 html[data-theme="dark"]{background:#17140F;color-scheme:dark}
 html[data-theme="dark"] .t6y{--bg:#17140F;--ink:#F5EEDC;--soft:#B5AA91;--acct:#E3C46F;--tint:#2A2418;--onacc:#C9BDA0;--line:rgba(245,238,220,0.14);--card:#221E17;--sun:#2A2519;--fill:#241F16;--hl:rgba(246,227,161,0.22)}
 html[data-theme="dark"] #services{--line:rgba(245,238,220,0.2) !important}
-html[data-theme="dark"] .t6y-sun{box-shadow:0 0 140px 20px rgba(246,227,161,.10),inset 0 2px 0 rgba(246,227,161,.25)}
+/* footer: the same butter sun as light mode, rising into the night sky with a soft glow;
+   and everything on it switches back to dark ink */
+html[data-theme="dark"] .t6y-sunset{--bg:#FFFBEF;--ink:#211E16;--soft:#6A6250;--acct:#8A6100;--onacc:#4A4332;--line:rgba(33,30,22,0.15);--card:#FFFFFF;--sun:var(--acc);background:#17140F;color:var(--ink)}
+html[data-theme="dark"] .t6y-sun{box-shadow:0 0 90px 24px rgba(246,227,161,.25)}
 html[data-theme="dark"] .t6y-nav{background:rgba(23,20,15,.55);border-color:rgba(245,238,220,.12);box-shadow:0 10px 30px rgba(0,0,0,.3),inset 0 1px 0 rgba(245,238,220,.06)}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){html[data-theme="dark"] .t6y-nav{background:rgba(23,20,15,.94)}}
 /* while switching, colours fade instead of snapping */
@@ -228,10 +231,12 @@ html[data-theme="dark"] .t6y-eye{transform:scaleY(.12)}
    so reduced motion and browsers without scroll timelines simply see it risen. */
 @keyframes t6y-live{0%,100%{box-shadow:0 0 0 0 rgba(62,142,79,.5)}50%{box-shadow:0 0 0 7px rgba(62,142,79,0)}}
 .t6y-live{animation:t6y-live 2s ease-out infinite}
-.t6y-sunset{position:relative;z-index:1;overflow:clip;view-timeline-name:--t6ysun;background:var(--bg);padding:18vh var(--side) 5vh}
+/* the heading starts below the sun's edge so it sits wholly on the sun, with a strip of sky above */
+.t6y-sunset{position:relative;z-index:1;overflow:clip;view-timeline-name:--t6ysun;background:var(--bg);min-height:100vh;box-sizing:border-box;padding:calc(18vh + clamp(70px,7vw,120px) + clamp(56px,6vw,96px)) var(--side) 5vh}
 .t6y-sun{position:absolute;left:50%;top:calc(18vh + clamp(70px,7vw,120px));width:max(150vw,1200px);aspect-ratio:1;margin-left:calc(max(150vw,1200px) / -2);border-radius:50%;background:var(--sun);
-  animation:t6y-sunrise cubic-bezier(.3,.6,.4,1) both;animation-timeline:--t6ysun;animation-range:entry 25% entry 100%}
-/* rises over the last stretch of scrolling, while the footer is actually on screen */
+  animation:t6y-sunrise cubic-bezier(.3,.6,.4,1) both;animation-timeline:--t6ysun;animation-range:entry 15% exit 0%}
+/* rises slowly over all the remaining scroll, finishing as the page reaches the bottom
+   (the footer is at least a screen tall, so the bottom of the page is exactly exit 0%) */
 @keyframes t6y-sunrise{from{transform:translateY(45vh)}}
 .t6y-suncontent{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
 .t6y-suncontent h2{margin:0;max-width:16ch;font-family:Petrona,Fraunces,serif;font-weight:300;font-size:clamp(46px,6.6vw,104px);line-height:.98;letter-spacing:-.02em;text-wrap:balance}
