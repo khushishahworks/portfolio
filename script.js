@@ -141,13 +141,98 @@
 })();
 
 // Start the hero's entrance (headline rise, Venn diagram) once it scrolls into view.
+// Each time the section leaves the screen completely, the Venn diagram is rewound,
+// so it draws itself again on every visit.
 (function(){
   var hero=document.getElementById('hero');
   if(!('IntersectionObserver' in window)){ hero.classList.add('t6y-play'); return; }
+  var venn=hero.querySelector('.t6y-venn');
   // Watch the pinned 100vh box (not the tall header) and start as soon as it's 15% on screen,
   // so the Venn diagram is drawing while the section slides in.
-  var io=new IntersectionObserver(function(entries){
-    if(entries[0].isIntersecting){ hero.classList.add('t6y-play'); io.disconnect(); }
-  },{threshold:0.15});
-  io.observe(hero.querySelector('.t6y-herostick') || hero);
+  new IntersectionObserver(function(entries){
+    var r=entries[0].intersectionRatio;
+    if(r>=0.15) hero.classList.add('t6y-play');
+    else if(r===0 && hero.classList.contains('t6y-play')){
+      hero.classList.remove('t6y-play');
+      if(venn && venn.getAnimations) venn.getAnimations({subtree:true}).forEach(function(a){
+        if(a.timeline===document.timeline) a.currentTime=0;
+      });
+    }
+  },{threshold:[0,0.15]}).observe(hero.querySelector('.t6y-herostick') || hero);
+})();
+
+// Story: the photo in the top bar opens a three-frame story, like an Instagram story.
+// Frames move on by themselves; tap the right half to skip ahead, the left half to go back.
+// The last frame stays, with the sun risen and the "Message me" link on it.
+(function(){
+  var btn=document.getElementById('storyBtn'), view=document.getElementById('storyView');
+  if(!btn || !view) return;
+  var root=document.querySelector('.t6y'), card=view.querySelector('.t6y-sv-card');
+  var bars=view.querySelectorAll('.t6y-sv-bars i'), lines=view.querySelectorAll('.t6y-sv-lines p');
+  var close=view.querySelector('.t6y-sv-close'), cta=view.querySelector('.t6y-sv-cta');
+  var last=lines.length-1, idx=0, timer;
+
+  function show(i){
+    idx=i; clearTimeout(timer);
+    card.setAttribute('data-frame',i);
+    for(var j=0;j<bars.length;j++){
+      bars[j].classList.remove('t6y-now'); void bars[j].offsetWidth;
+      bars[j].classList.toggle('t6y-done',j<i);
+      if(j===i) bars[j].classList.add('t6y-now');
+      lines[j].classList.toggle('t6y-now',j===i);
+    }
+    if(i<last) timer=setTimeout(function(){ show(i+1); },2600);
+  }
+  function open(){
+    view.hidden=false; root.classList.add('t6y-storyopen');
+    document.documentElement.style.overflow='hidden';
+    document.addEventListener('keydown',key);
+    show(0); close.focus();
+  }
+  function shut(){
+    clearTimeout(timer); view.hidden=true; root.classList.remove('t6y-storyopen');
+    document.documentElement.style.overflow='';
+    document.removeEventListener('keydown',key);
+    btn.classList.add('t6y-seen'); btn.focus();
+  }
+  function key(e){
+    if(e.key==='Escape') shut();
+    else if(e.key==='ArrowRight' && idx<last) show(idx+1);
+    else if(e.key==='ArrowLeft' && idx>0) show(idx-1);
+    else if(e.key==='Tab' && idx===last){  // keep focus between the close button and the link
+      e.preventDefault(); (document.activeElement===close ? cta : close).focus();
+    }
+    else if(e.key==='Tab'){ e.preventDefault(); close.focus(); }
+  }
+
+  btn.addEventListener('click',open);
+  close.addEventListener('click',shut);
+  view.addEventListener('click',function(e){
+    if(e.target===view) return shut();
+    if(e.target.closest('a,button')) return;
+    var r=card.getBoundingClientRect(), n=e.clientX>r.left+r.width/2 ? idx+1 : idx-1;
+    if(n>=0 && n<=last) show(n);
+  });
+})();
+
+// Availability in the footer always shows the current month.
+(function(){
+  var el=document.getElementById('availMonth');
+  if(el) el.textContent=new Date().toLocaleString('en-IN',{month:'long'});
+})();
+
+// Mobile menu: the hamburger opens the links in a panel under the top bar.
+// Closes on a link tap, a tap elsewhere, or Esc.
+(function(){
+  var btn=document.getElementById('menuBtn'), nav=btn && btn.closest('.t6y-nav');
+  if(!nav) return;
+  function set(open){
+    nav.classList.toggle('t6y-menuopen',open);
+    btn.setAttribute('aria-expanded',open?'true':'false');
+    btn.setAttribute('aria-label',open?'Close menu':'Open menu');
+  }
+  btn.addEventListener('click',function(){ set(!nav.classList.contains('t6y-menuopen')); });
+  nav.querySelectorAll('.t6y-navlinks a').forEach(function(a){ a.addEventListener('click',function(){ set(false); }); });
+  document.addEventListener('click',function(e){ if(!nav.contains(e.target)) set(false); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') set(false); });
 })();

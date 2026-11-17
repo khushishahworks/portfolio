@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Khushi Shah · Why a website?</title>
+<meta name="description" content="Six quick questions about your business and why you want a website. Your answers go straight to Khushi Shah, web designer in Pune.">
+<link rel="canonical" href="https://khushishah.work/questions.html">
+<meta property="og:title" content="Why do you want a website?">
+<meta property="og:image" content="https://khushishah.work/assets/og-image.jpg">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='4 6 32 28'%3E%3Ccircle cx='13' cy='14' r='4' fill='%23E5B83A'/%3E%3Ccircle cx='27' cy='14' r='4' fill='%23E5B83A'/%3E%3Cpath d='M9 23c5 8 17 8 22 0' fill='none' stroke='%23E5B83A' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@1,300&amp;family=Inter:wght@400;500&amp;family=Fraunces:opsz,wght@9..144,600&amp;family=Petrona:wght@300;400&amp;display=swap" rel="stylesheet">
+<script>try{var t=localStorage.getItem('theme');if(t!=='dark')t='light';document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<style>
+:root{--bg:#FFFBEF;--ink:#211E16;--soft:#6A6250;--acc:#F6E3A1;--acct:#8A6100;--card:#FFFFFF;--line:rgba(33,30,22,.15)}
+html[data-theme="dark"]{--bg:#17140F;--ink:#F5EEDC;--soft:#B5AA91;--acct:#E3C46F;--card:#221E17;--line:rgba(245,238,220,.14);color-scheme:dark}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font-family:Inter,sans-serif}
+a{color:inherit}
+header{display:flex;justify-content:space-between;align-items:center;padding:22px clamp(24px,6vw,64px)}
+.logo{font-family:Fraunces,serif;font-weight:600;font-size:19px;letter-spacing:-.01em;text-decoration:none}
+.count{font-size:13px;color:var(--soft)}
+.bar{height:3px;margin:0 clamp(24px,6vw,64px);border-radius:3px;background:var(--line);overflow:clip}
+.bar i{display:block;height:100%;width:0;background:var(--acct);transition:width .5s cubic-bezier(.2,.8,.2,1)}
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:6vh clamp(24px,6vw,64px) 10vh}
+form{width:min(680px,100%)}
+.step{width:100%;display:none;flex-direction:column;gap:22px;animation:in .5s cubic-bezier(.2,.8,.2,1)}
+.step.on{display:flex}
+@keyframes in{from{opacity:0;transform:translateY(18px)}}
+.lbl{font-size:13px;letter-spacing:.14em;color:var(--soft)}
+h1,h2{margin:0;text-wrap:balance;font-family:Petrona,serif;font-weight:300;letter-spacing:-.03em;line-height:1.05}
+h1{font-size:clamp(40px,6vw,72px)}
+h2{font-size:clamp(32px,4.4vw,52px)}
+em{font-family:'Crimson Pro',serif;font-weight:300;color:var(--acct)}
+p.sub{margin:0;color:var(--soft);font-size:16px;line-height:1.6}
+.opts{display:flex;flex-wrap:wrap;gap:10px}
+.opt{font:inherit;font-size:15px;padding:12px 18px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;transition:background .2s,border-color .2s,transform .15s}
+.opt:hover{border-color:var(--ink)}
+.opt:active{transform:scale(.97)}
+.opt[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:#211E16}
+input,textarea{font:inherit;font-size:17px;width:100%;padding:14px 18px;border-radius:16px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+input:focus,textarea:focus,.opt:focus-visible,.btn:focus-visible{outline:2px solid var(--acct);outline-offset:2px}
+textarea{min-height:96px;resize:vertical}
+.field{display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--soft)}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:10px}
+.btn{font:inherit;font-size:16px;font-weight:500;display:inline-flex;align-items:center;gap:10px;padding:16px 26px;border-radius:999px;border:0;background:var(--ink);color:var(--bg);cursor:pointer;text-decoration:none;transition:opacity .2s}
+.btn[disabled]{opacity:.35;cursor:default}
+.back{font:inherit;font-size:15px;background:none;border:0;color:var(--soft);cursor:pointer;padding:8px 0}
+.back[hidden]{visibility:hidden;display:inline}
+.summary{display:flex;flex-direction:column;gap:12px;padding:20px 22px;border-radius:20px;background:var(--card);border:1px solid var(--line);font-size:15px;line-height:1.5}
+.summary b{display:block;font-size:12px;letter-spacing:.12em;font-weight:500;color:var(--soft)}
+.note{font-size:13px;color:var(--soft)}
+</style>
+</head>
+<body>
+<header><a class="logo" href="index.html">Khushi Shah</a><span class="count" id="count">1 of 6</span></header>
+<div class="bar" aria-hidden="true"><i id="bar"></i></div>
+
+<main>
+  <form id="quiz" novalidate>
+    <!-- 1 -->
+    <section class="step on" data-key="business">
+      <span class="lbl">LET'S START</span>
+      <h1>Why do you want a <em>website?</em></h1>
+      <p class="sub">Six quick questions, mostly taps. Your answers come straight to my inbox, and I'll reply with ideas for your business.</p>
+      <label class="field">What's your business called, and what do you do?<input name="business" autocomplete="organization" placeholder="e.g. Homely Stitch, handmade crochet gifts"></label>
+    </section>
+
+    <!-- 2 -->
+    <section class="step" data-key="why" data-multi>
+      <span class="lbl">THE BIG ONE</span>
+      <h2>What should your website <em>do</em> for you?</h2>
+      <p class="sub">Pick as many as you like.</p>
+      <div class="opts"><button type="button" class="opt">Bring in new customers</button><button type="button" class="opt">Get found on Google</button><button type="button" class="opt">Look more professional</button><button type="button" class="opt">Sell online</button><button type="button" class="opt">Take bookings</button><button type="button" class="opt">Stop answering the same questions on WhatsApp</button><button type="button" class="opt">Show off my work</button><button type="button" class="opt">Something else</button></div>
+    </section>
+
+    <!-- 3 -->
+    <section class="step" data-key="found" data-multi>
+      <span class="lbl">RIGHT NOW</span>
+      <h2>How do customers find you <em>today?</em></h2>
+      <div class="opts"><button type="button" class="opt">Instagram</button><button type="button" class="opt">WhatsApp</button><button type="button" class="opt">Word of mouth</button><button type="button" class="opt">Google Maps</button><button type="button" class="opt">Walk-ins</button><button type="button" class="opt">Honestly, they don't yet</button></div>
+    </section>
+
+    <!-- 4 -->
+    <section class="step" data-key="site">
+      <span class="lbl">CURRENT WEBSITE</span>
+      <h2>Do you have a website <em>already?</em></h2>
+      <div class="opts"><button type="button" class="opt">No, this would be my first</button><button type="button" class="opt">Yes, but I don't love it</button><button type="button" class="opt">Yes, it just needs a refresh</button></div>
+    </section>
+
+    <!-- 5 -->
+    <section class="step" data-key="when">
+      <span class="lbl">TIMING</span>
+      <h2>When would you like it <em>live?</em></h2>
+      <div class="opts"><button type="button" class="opt">As soon as possible</button><button type="button" class="opt">In 1 to 2 months</button><button type="button" class="opt">Just exploring for now</button></div>
+    </section>
+
+    <!-- 6 -->
+    <section class="step" data-key="contact">
+      <span class="lbl">LAST ONE</span>
+      <h2>How can I <em>reach you?</em></h2>
+      <label class="field">Your name<input name="name" autocomplete="name"></label>
+      <label class="field">Email or phone number<input name="reach" autocomplete="email"></label>
+      <label class="field">Anything else I should know? (optional)<textarea name="extra"></textarea></label>
+    </section>
+
+    <!-- done -->
+    <section class="step" data-key="done">
+      <span class="lbl">ALL SET</span>
+      <h2>Thank you! Here's what <em>you told me.</em></h2>
+      <div class="summary" id="summary"></div>
+      <a class="btn" id="send" href="#">Send it to Khushi &#8594;</a>
+      <p class="note">This opens your email app with everything filled in, so all you do is press send.</p>
+    </section>
+
+    <div class="nav"><button type="button" class="back" id="back" hidden>&#8592; Back</button><button type="submit" class="btn" id="next">Next &#8594;</button></div>
+  </form>
+</main>
+
+<script>
+(function(){
+  var steps=[].slice.call(document.querySelectorAll('.step'));
+  var last=steps.length-1, i=0, answers={};
+  var next=document.getElementById('next'), back=document.getElementById('back');
+  var bar=document.getElementById('bar'), count=document.getElementById('count');
+  var form=document.getElementById('quiz');
+
+  // tapping an option: one choice per question, or several on the multi ones
+  steps.forEach(function(st){
+    st.addEventListener('click',function(e){
+      var o=e.target.closest('.opt'); if(!o) return;
+      var on=o.getAttribute('aria-pressed')!=='true';
+      if(!st.hasAttribute('data-multi')) st.querySelectorAll('.opt').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+      o.setAttribute('aria-pressed',on?'true':'false');
+      update();
+    });
+    st.querySelectorAll('.opt').forEach(function(o){ o.setAttribute('aria-pressed','false'); });
+    st.addEventListener('input',update);
+  });
+
+  function value(st){
+    var key=st.getAttribute('data-key');
+    if(key==='business') return st.querySelector('input').value.trim();
+    if(key==='contact') return st.querySelector('[name=name]').value.trim() && st.querySelector('[name=reach]').value.trim();
+    return [].map.call(st.querySelectorAll('.opt[aria-pressed="true"]'),function(o){ return o.textContent; }).join(', ');
+  }
+  function update(){ next.disabled=i<last && !value(steps[i]); }
+
+  function show(n){
+    steps[i].classList.remove('on'); i=n; steps[i].classList.add('on');
+    back.hidden=i===0;
+    next.hidden=i===last;
+    next.style.display=i===last?'none':'';
+    next.textContent=i===last-1?'See my answers →':'Next →';
+    count.textContent=i<last ? (i+1)+' of '+last : 'Done';
+    bar.style.width=(i/last*100)+'%';
+    if(i===last) finish();
+    update();
+    var f=steps[i].querySelector('input,.opt'); if(f && i>0) f.focus({preventScroll:true});
+  }
+
+  function finish(){
+    var q=form.elements;
+    answers={
+      'Business':q.business.value.trim(),
+      'What the website should do':value(steps[1]),
+      'How customers find them today':value(steps[2]),
+      'Current website':value(steps[3]),
+      'Timing':value(steps[4]),
+      'Name':q.name.value.trim(),
+      'Contact':q.reach.value.trim(),
+      'Anything else':q.extra.value.trim()
+    };
+    var sum=document.getElementById('summary'); sum.textContent='';
+    var body='';
+    Object.keys(answers).forEach(function(k){
+      if(!answers[k]) return;
+      var row=document.createElement('div'), b=document.createElement('b');
+      b.textContent=k.toUpperCase(); row.appendChild(b); row.appendChild(document.createTextNode(answers[k]));
+      sum.appendChild(row);
+      body+=k+': '+answers[k]+'\n';
+    });
+    document.getElementById('send').href='mailto:2002khushishah@gmail.com?subject='+encodeURIComponent('Website enquiry: '+(answers['Business']||answers['Name']))+'&body='+encodeURIComponent('Hi Khushi,\n\n'+body+'\nThanks!');
+  }
+
+  form.addEventListener('submit',function(e){ e.preventDefault(); if(!next.disabled && i<last) show(i+1); });
+  back.addEventListener('click',function(){ if(i>0) show(i-1); });
+  update();
+})();
+</script>
+</body>
+</html>
